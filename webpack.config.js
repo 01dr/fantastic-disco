@@ -20,7 +20,7 @@ const config = {
                 include: path.resolve(__dirname, 'src'),
                 loader: 'babel-loader',
                 options: {
-                    presets: ['es2017']
+                    presets: ['es2017', 'react', 'stage-0']
                 }
             }
         ]

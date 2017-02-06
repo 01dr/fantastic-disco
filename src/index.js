@@ -3,5 +3,10 @@
  * 06.02.17
  */
 
-const root = document.querySelector('#root');
-root.innerHTML = `<p>Hello, webpack!</p>`;
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+    <div>React!</div>,
+    document.getElementById('root')
+);
