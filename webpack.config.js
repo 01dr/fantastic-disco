@@ -12,7 +12,7 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
 const config = {
-    devtool: isProd ? 'nosources-source-map' : 'eval-source-map',
+    devtool: isProd ? '' : 'eval-source-map',
     context: sourcePath,
     entry: {
         js: './index.js',
@@ -81,14 +81,37 @@ const config = {
         }),
 
         new webpack.DefinePlugin({
-            // 'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
             __DEV__: process.env.NODE_ENV === 'development'
         }),
 
         new webpack.NamedModulesPlugin(),
-
-        new webpack.HotModuleReplacementPlugin()
     ]
 };
+
+if (isProd) {
+    config.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                screw_ie8: true,
+                conditionals: true,
+                unused: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true,
+            },
+            output: {
+                comments: false,
+            },
+        })
+    )
+} else {
+    config.plugins.push(
+        new webpack.HotModuleReplacementPlugin()
+    );
+}
 
 module.exports = config;
