@@ -3,6 +3,6 @@
  * 07.02.17
  */
 
-module.exports = __DEV__
+module.exports = process.env.NODE_ENV
     ? require('./store.dev')
     : require('./store.prod');

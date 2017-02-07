@@ -6,12 +6,15 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 
+import TestContainer from '../TestContainer/TestContainer';
+
 export default class Root extends Component {
     render() {
         const { store } = this.props;
         return (
             <Provider store={store}>
                 <div>React prod mode</div>
+                <TestContainer/>
             </Provider>
         );
     }

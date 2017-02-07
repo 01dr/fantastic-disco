@@ -5,6 +5,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const sourcePath = path.join(__dirname, './src');
 const staticsPath = path.join(__dirname, './static');
@@ -55,7 +56,7 @@ const config = {
         rules: [
             {
                 test: /\.html$/,
-                include: path.resolve(__dirname, 'src'),
+                include: sourcePath,
                 use: {
                     loader: 'file-loader',
                     options: {
@@ -65,25 +66,37 @@ const config = {
             },
             {
                 test: /\.js$/,
-                include: path.resolve(__dirname, 'src'),
+                include: sourcePath,
                 loader: 'babel-loader',
                 options: {
                     presets: ['es2015', 'react', 'stage-0']
                 }
+            },
+            {
+                test: /\.pcss$/,
+                include: sourcePath,
+                use: ExtractTextPlugin.extract({
+                    fallbackLoader: 'style-loader',
+                    loader: [
+                        { loader: 'css-loader', query: { modules: true, sourceMaps: true } },
+                        { loader: 'postcss-loader' },
+                    ]
+                })
             }
         ]
     },
     plugins: [
+        new ExtractTextPlugin("styles.css"),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: (module) => module.context && module.context.indexOf('node_modules') !== -1,
+            minChunks: Infinity,
             filename: 'vendor.bundle.js'
         }),
-
         new webpack.DefinePlugin({
-            __DEV__: process.env.NODE_ENV === 'development'
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
         }),
-
         new webpack.NamedModulesPlugin(),
     ]
 };
