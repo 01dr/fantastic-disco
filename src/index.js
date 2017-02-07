@@ -5,8 +5,13 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 ReactDOM.render(
-    <div>React!</div>,
+    <Provider store={store}>
+        <div>react!</div>
+    </Provider>,
     document.getElementById('root')
 );
