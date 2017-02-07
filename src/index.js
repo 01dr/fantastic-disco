@@ -4,14 +4,24 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { render } from 'react-dom';
 
 import store from './store';
+import Root from './containers/root';
 
-ReactDOM.render(
-    <Provider store={store}>
-        <div>React {process.env.NODE_ENV === 'development' ? <span>development</span> : <span>production</span>} mode</div>
-    </Provider>,
+import 'index.html';
+
+render(
+    <Root store={store}/>,
     document.getElementById('root')
 );
+
+if (module.hot) {
+    module.hot.accept('./containers/root/index', () => {
+        const NewRoot = require('./containers/root/index').default;
+        render(
+            <NewRoot store={store}/>,
+            document.getElementById('root')
+        );
+    });
+}

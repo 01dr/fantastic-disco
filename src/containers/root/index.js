@@ -4,5 +4,5 @@
  */
 
 module.exports = __DEV__
-    ? require('./store.dev')
-    : require('./store.prod');
+    ? require('./root.dev')
+    : require('./root.prod');
