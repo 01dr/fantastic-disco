@@ -1,8 +1,4 @@
 {
-  "presets": [
-	["es2017"],
-	"react"
-  ],
   "env": {
 	"development": {
 	  "presets": [

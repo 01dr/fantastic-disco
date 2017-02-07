@@ -11,7 +11,7 @@ import store from './store';
 
 ReactDOM.render(
     <Provider store={store}>
-        <div>react!</div>
+        <div>React {process.env.NODE_ENV === 'development' ? <span>development</span> : <span>production</span>} mode</div>
     </Provider>,
     document.getElementById('root')
 );

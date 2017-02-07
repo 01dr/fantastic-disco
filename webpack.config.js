@@ -8,11 +8,11 @@ const path = require('path');
 
 const sourcePath = path.join(__dirname, './src');
 const staticsPath = path.join(__dirname, './static');
-// const nodeEnv = env && env.prod ? 'production' : 'development';
-// const isProd = nodeEnv === 'production';
+const nodeEnv = process.env.NODE_ENV || 'development';
+const isProd = nodeEnv === 'production';
 
 const config = {
-    devtool: 'eval-source-map',
+    devtool: isProd ? 'nosources-source-map' : 'eval-source-map',
     context: sourcePath,
     entry: {
         js: './index.js',
@@ -33,9 +33,9 @@ const config = {
         contentBase: './src',
         historyApiFallback: true,
         port: 3000,
-        compress: false,
-        inline: true,
-        hot: true,
+        compress: isProd,
+        inline: !isProd,
+        hot: !isProd,
         stats: {
             assets: true,
             children: false,
@@ -58,7 +58,7 @@ const config = {
                 include: path.resolve(__dirname, 'src'),
                 use: {
                     loader: 'file-loader',
-                    query: {
+                    options: {
                         name: '[name].[ext]'
                     }
                 }
@@ -68,7 +68,7 @@ const config = {
                 include: path.resolve(__dirname, 'src'),
                 loader: 'babel-loader',
                 options: {
-                    presets: ['es2017', 'react', 'stage-0']
+                    presets: ['es2015', 'react', 'stage-0']
                 }
             }
         ]
@@ -76,8 +76,12 @@ const config = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: Infinity,
+            minChunks: (module) => module.context && module.context.indexOf('node_modules') !== -1,
             filename: 'vendor.bundle.js'
+        }),
+
+        new webpack.DefinePlugin({
+            'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
         }),
 
         new webpack.NamedModulesPlugin(),
