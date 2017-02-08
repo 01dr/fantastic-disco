@@ -57,14 +57,10 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.html$/,
+                test: /\.js$/,
+                enforce: 'pre',
                 include: sourcePath,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]'
-                    }
-                }
+                loader: 'eslint-loader'
             },
             {
                 test: /\.js$/,
@@ -72,6 +68,16 @@ const config = {
                 loader: 'babel-loader',
                 options: {
                     presets: ['es2015', 'react', 'stage-0']
+                }
+            },
+            {
+                test: /\.html$/,
+                include: sourcePath,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]'
+                    }
                 }
             },
             {

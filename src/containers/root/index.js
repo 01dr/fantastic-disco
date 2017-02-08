@@ -3,7 +3,7 @@
  * 07.02.17
  */
 
-console.log(__DEV__);
+/* global __DEV__:true */
 
 module.exports = __DEV__
     ? require('./root.dev')

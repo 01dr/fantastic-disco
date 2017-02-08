@@ -7,7 +7,6 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import objectAssign from 'object-assign';
 
-import DevTools from '../containers/devTools';
 import reducers from '../reducers';
 
 const initialState = {};

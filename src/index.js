@@ -9,7 +9,7 @@ import { render } from 'react-dom';
 import store from './store';
 import Root from './containers/root';
 
-import 'index.html';
+import './index.html';
 
 render(
     <Root store={store}/>,
