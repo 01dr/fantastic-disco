@@ -7,7 +7,7 @@ import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import DevTools from '../devTools';
 
-import TestContainer from '../TestContainer/TestContainer';
+import Main from '../Main/Main';
 
 export default class Root extends Component {
     render() {
@@ -15,9 +15,8 @@ export default class Root extends Component {
         return (
             <Provider store={store}>
                 <div>
-                    <div>React develop mode</div>
-                    <TestContainer/>
-                    <DevTools />
+                    <Main/>
+                    <DevTools/>
                 </div>
             </Provider>
         );

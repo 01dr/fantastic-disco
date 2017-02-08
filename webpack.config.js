@@ -99,6 +99,30 @@ const config = {
                         }
                     ]
                 })
+            },
+            {
+                test: /.*\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                    {
+                        loader: 'image-webpack-loader',
+                        query: {
+                            mozjpeg: {
+                                progressive: true,
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            optipng: {
+                                optimizationLevel: 4,
+                            },
+                            pngquant: {
+                                quality: '75-90',
+                                speed: 3,
+                            }
+                        }
+                    }
+                ]
             }
         ]
     },

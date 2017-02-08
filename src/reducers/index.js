@@ -4,6 +4,6 @@
  */
 
 import objectAssign from 'object-assign';
-import red from './testReducer';
+import basket from './basket';
 
-export default objectAssign({}, red);
+export default objectAssign({}, basket);

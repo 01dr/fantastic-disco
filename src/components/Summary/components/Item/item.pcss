@@ -1,0 +1,40 @@
+/*
+ * Crafted by Aidar Ibatullin <amazing.space.invader@gmail.com>
+ * 08.02.17
+ */
+
+.item {
+	padding: 10px 5px;
+	display: flex;
+	border-bottom: 1px solid #d2d2d2;
+
+	& > .image {
+		margin: 0 10px 0 0;
+
+		& > img {
+			width: 50px;
+			height: 50px;
+			display: block;
+		}
+	}
+
+	& > .info {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		& > div {
+			color: #000;
+			font-size: 10px;
+		}
+
+		& > .name {
+			font-size: 14px;
+		}
+	}
+
+	& > .price {
+		margin-left: auto;
+		color: #808081;
+	}
+}

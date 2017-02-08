@@ -1,0 +1,59 @@
+/*
+ * Crafted by Aidar Ibatullin <amazing.space.invader@gmail.com>
+ * 08.02.17
+ */
+
+.topBar {
+	position: fixed;
+	width: 100%;
+	min-width: 720px;
+	height: 50px;
+	background-color: #fff;
+	border-bottom: 1px solid #efb7e5;
+	box-shadow: 0 0 5px 0 #b7b7b7;
+
+	& .inner {
+		display: flex;
+		align-items: center;
+
+		& > .logo {
+			margin: 0 10px 0 0;
+
+			& > img {
+				max-height: 50px;
+				display: block;
+				padding: 0;
+				margin: 0;
+				user-select: none;
+				cursor: default;
+			}
+		}
+
+		& > .name {
+			color: #5a1094;
+			font-weight: 100;
+			font-size: 18px;
+			user-select: none;
+			cursor: default;
+		}
+
+		& > .cart {
+			margin-left: auto;
+
+			& > a {
+				color: #5a1094;
+				cursor: pointer;
+				user-select: none;
+				font-weight: 100;
+				display: inline-flex;
+				align-items: center;
+				padding: 5px;
+
+				& > img {
+					max-height: 20px;
+					margin: 0 0 0 4px;
+				}
+			}
+		}
+	}
+}
