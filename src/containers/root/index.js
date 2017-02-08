@@ -3,6 +3,8 @@
  * 07.02.17
  */
 
-module.exports = process.env.NODE_ENV
+console.log(__DEV__);
+
+module.exports = __DEV__
     ? require('./root.dev')
     : require('./root.prod');

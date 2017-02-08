@@ -12,6 +12,8 @@ const staticsPath = path.join(__dirname, './static');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
+console.log(`${nodeEnv} mode`);
+
 const config = {
     devtool: isProd ? '' : 'eval-source-map',
     context: sourcePath,
@@ -76,26 +78,33 @@ const config = {
                 test: /\.pcss$/,
                 include: sourcePath,
                 use: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: [
-                        { loader: 'css-loader', query: { modules: true, sourceMaps: true } },
-                        { loader: 'postcss-loader' },
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            query: {
+                                modules: true,
+                                sourceMaps: true,
+                                localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader'
+                        }
                     ]
                 })
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin('styles.css'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: Infinity,
             filename: 'vendor.bundle.js'
         }),
         new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
+            __DEV__: process.env.NODE_ENV === 'development'
         }),
         new webpack.NamedModulesPlugin(),
     ]

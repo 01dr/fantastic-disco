@@ -3,9 +3,12 @@
  * 08.02.17
  */
 
+const path = require('path');
+
 module.exports = {
-        parser: 'sugarss',
-        plugins: {
-            'postcss-import': {}
-        }
+    plugins: [
+        require('postcss-import')({}),
+        require('postcss-cssnext')({}),
+        require('postcss-browser-reporter')({})
+    ]
 }

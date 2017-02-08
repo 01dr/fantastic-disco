@@ -13,8 +13,10 @@ export default class Root extends Component {
         const { store } = this.props;
         return (
             <Provider store={store}>
-                <div>React prod mode</div>
-                <TestContainer/>
+                <div>
+                    <div>React prod mode</div>
+                    <TestContainer/>
+                </div>
             </Provider>
         );
     }
