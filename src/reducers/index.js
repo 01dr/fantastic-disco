@@ -5,5 +5,6 @@
 
 import objectAssign from 'object-assign';
 import basket from './basket';
+import form from './form';
 
-export default objectAssign({}, basket);
+export default objectAssign({}, basket, form);
