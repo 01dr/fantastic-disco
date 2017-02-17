@@ -11,13 +11,14 @@ import Container from '../Container/Container';
 import logo from '../../images/logo.png';
 import cartIcon from '../../images/icons/cart.png';
 
-const TopBar = () => (
+const TopBar = ({ itemsQuantity }) => (
     <div className={s.topBar}>
         <Container>
             <div className={s.inner}>
                 <div className={s.logo}><img src={logo}/></div>
                 <div className={s.name}>Amazing Frontend Shop</div>
                 <div className={s.cart}>
+                    {itemsQuantity > 0 ? <label>{itemsQuantity}</label> : null}
                     <a>Cart <img src={cartIcon}/></a>
                 </div>
             </div>

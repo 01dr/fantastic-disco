@@ -14,33 +14,44 @@ const Summary = props => (
             <span>Order Summary</span>
             <a className={s.edit}>edit order</a>
         </div>
-        <div className={s.body}>
 
-            {props.basket.items.map((item, i) => <Item
-                key={i}
-                name={item.name}
-                description={item.description}
-                quantity={item.quantity}
-                price={item.price}
-                image={item.image} />)}
+        {props.basket.items.length > 1
+            ? (
+                <div className={s.body}>
+                    {props.basket.items.map((item, i) => <Item
+                        key={i}
+                        name={item.name}
+                        description={item.description}
+                        quantity={item.quantity}
+                        price={item.price}
+                        image={item.image} />)}
 
-            <div className={s.subtotal}>
-                <div className={s.row}>
-                    <div>Subtotal</div><div>{`$${props.basket.subtotal}`}</div>
+                    <div className={s.subtotal}>
+                        <div className={s.row}>
+                            <div>Subtotal</div><div>{`$${props.basket.subtotal}`}</div>
+                        </div>
+                        <div className={s.row}>
+                            <div>Shipping</div><div>{`$${props.basket.shipping}`}</div>
+                        </div>
+                        <div className={s.row}>
+                            <div>Taxes</div><div>{`$${props.basket.taxes}`}</div>
+                        </div>
+                    </div>
+                    <div className={s.total}>
+                        <div className={s.row}>
+                            <div>Total</div><div>{`$${props.basket.total}`}</div>
+                        </div>
+                    </div>
                 </div>
-                <div className={s.row}>
-                    <div>Shipping</div><div>{`$${props.basket.shipping}`}</div>
+            )
+            : (
+                <div className={s.body}>
+                    <div className={s.empty}>basket is empty</div>
                 </div>
-                <div className={s.row}>
-                    <div>Taxes</div><div>{`$${props.basket.taxes}`}</div>
-                </div>
-            </div>
-            <div className={s.total}>
-                <div className={s.row}>
-                    <div>Total</div><div>{`$${props.basket.total}`}</div>
-                </div>
-            </div>
-        </div>
+            )
+        }
+
+
         <div className={s.terms}>All purchases are subject to our <a>Terms and Conditions</a></div>
     </div>
 );

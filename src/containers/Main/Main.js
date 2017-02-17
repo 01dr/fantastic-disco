@@ -19,7 +19,7 @@ class Main extends Component {
 
         return (
             <div>
-                <TopBar/>
+                <TopBar itemsQuantity={basket.items.length}/>
                 <Container>
                     <div className={s.wrapper}>
                         <div className={s.main}>

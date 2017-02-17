@@ -39,6 +39,7 @@
 
 		& > .cart {
 			margin-left: auto;
+			position: relative;
 
 			& > a {
 				color: #5a1094;
@@ -53,6 +54,24 @@
 					max-height: 20px;
 					margin: 0 0 0 4px;
 				}
+			}
+
+			& > label {
+				display: flex;
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-color: #ff1876;
+				color: #fff;
+				font-size: 9px;
+				font-weight: 400;
+				width: 13px;
+				height: 13px;
+				border-radius: 50%;
+				align-items: center;
+				justify-content: center;
+				pointer-events: none;
+				user-select: none;
 			}
 		}
 	}
